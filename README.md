@@ -93,51 +93,50 @@
 ```
 # Weighted Uniform Strings
 ```java
-    public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
-        Set<Integer> set = new HashSet<>();
-    
-        /* matches a letter and captures it as a group, then looks for occurrences
-        of the captured letter repeating consecutively. */
-        Matcher match = Pattern.compile("([a-z])\\1*").matcher(s);
-        while(match.find()) {
-            String uniform = match.group();
-            int characterWeight = uniform.charAt(0) - 'a' + 1;
-            //find out the weights of the found uniform string
-            for(int multiplier = 1; multiplier <= uniform.length(); multiplier++) {
-                int weight = multiplier * characterWeight;
-                set.add(weight);
-            }
-    }
-    
-    //perform querying
-    List<String> results = new ArrayList<>();
-    for (int query : queries) {
-        if(set.contains(query)) {
-            results.add("Yes");
-        }
-        else results.add("No");
-    }
-    
-    return results;
-}
+   public static List < String > weightedUniformStrings(String s, List < Integer > queries) {
+     Set < Integer > set = new HashSet < > ();
+
+     /* matches a letter and captures it as a group, then looks for occurrences
+     of the captured letter repeating consecutively. */
+     Matcher match = Pattern.compile("([a-z])\\1*").matcher(s);
+     while (match.find()) {
+       String uniform = match.group();
+       int characterWeight = uniform.charAt(0) - 'a' + 1;
+       //find out the weights of the found uniform string
+       for (int multiplier = 1; multiplier <= uniform.length(); multiplier++) {
+         int weight = multiplier * characterWeight;
+         set.add(weight);
+       }
+     }
+
+     //perform querying
+     List < String > results = new ArrayList < > ();
+     for (int query: queries) {
+       if (set.contains(query)) {
+         results.add("Yes");
+       } else results.add("No");
+     }
+
+     return results;
+   }
 ```
 # Alternating Characters
 ```java
-        public static int alternatingCharacters(String s) {
-        if (s.length() <= 1) {
-            return 0;
-        }
+public static int alternatingCharacters(String s) {
+  if (s.length() <= 1) {
+    return 0;
+  }
 
-        char firstChar = s.charAt(0);
-        int i = 1;
-        while (i < s.length() && s.charAt(i) == firstChar) {
-            i++;
-        }
+  char firstChar = s.charAt(0);
+  int i = 1;
+  while (i < s.length() && s.charAt(i) == firstChar) {
+    i++;
+  }
 
-        String remainder = s.substring(i);
-        
-        return (s.length() - remainder.length() - 1) + alternatingCharacters(remainder);
-    }
+  String remainder = s.substring(i);
+
+  return (s.length() - remainder.length() - 1) + alternatingCharacters(remainder);
+}
 
 ```
 # Insertion Sort Part I
