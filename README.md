@@ -196,33 +196,168 @@ public static void insertionSort2(int n, List<Integer> arr) {
 ```
 # Quicksort I: Partition
 ```java
+    public static List<Integer> quickSort(List<Integer> arr) {
+        if (arr.size() <= 1) {
+            return arr;
+        }
 
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
 
+        for (int i = 1; i < arr.size(); i++) {
+            if (arr.get(0) > arr.get(i)) {
+                left.add(arr.get(i));
+            } else {
+                right.add(arr.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quickSort(left));
+        result.add(arr.get(0));
+        result.addAll(quickSort(right));
+
+        return result;
+    }
 ```
 # Ice Cream Parlor
 ```java
+    public static List<Integer> icecreamParlor(int m, List<Integer> arr) {
+        Map<String, List<Integer>> memo = new HashMap<>();
+        return getPrice(m, arr, 0, 1, memo);
+    }
 
+    public static List<Integer> getPrice(int m, List<Integer> arr, int index, int pointer, Map<String, List<Integer>> memo) {
+        if (pointer == arr.size()) {
+            return getPrice(m, arr, index + 1, index + 2, memo);
+        } else if (pointer > arr.size()) {
+            return new ArrayList<>();
+        }
 
+        String key = index + "-" + pointer;
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+
+        List<Integer> result;
+        if (arr.get(index) + arr.get(pointer) == m) {
+            result = List.of(index + 1, pointer + 1);
+        } else {
+            result = getPrice(m, arr, index, pointer + 1, memo);
+        }
+
+        memo.put(key, result);
+        return result;
+    }
+```
+# Hackerland Radio Transmitters
+```java
+public static int hackerlandRadioTransmitters(List<Integer> x, int k) {
+        Collections.sort(x);
+        return hackerlandRadioTransmittersRecursive(x, k, 0, 0);
+    }
+
+    private static int hackerlandRadioTransmittersRecursive(List<Integer> x, int k, int currentPos, int count) {
+        if (currentPos >= x.size()) {
+            return count;
+        }
+
+        int possibleTowerPos = x.get(currentPos) + k;
+
+        if (possibleTowerPos >= x.get(x.size() - 1)) {
+            return count + 1;
+        }
+
+        int i;
+        for (i = currentPos; i < x.size(); ++i) {
+            if (x.get(i) >= possibleTowerPos) {
+                break;
+            }
+        }
+
+        if (x.get(i) != possibleTowerPos) {
+            while (x.get(i) > possibleTowerPos) {
+                i--;
+            }
+        }
+
+        int rangeCovered = x.get(i) + k;
+
+        int j;
+        for (j = i; j < x.size(); ++j) {
+            if (x.get(j) > rangeCovered) {
+                break;
+            }
+        }
+
+        return hackerlandRadioTransmittersRecursive(x, k, j, count + 1);
+    }
 ```
 # Fibonacci Modified
 ```java
-
-
+     public static BigInteger fibonacciModified(int t1, int t2, int n) {
+        List<BigInteger> memo = new ArrayList<>(n);
+        memo.add(BigInteger.valueOf(t1));
+        memo.add(BigInteger.valueOf(t2));
+        
+        for (int i = 2; i < n; i++) {
+            BigInteger result = memo.get(i - 2).add(memo.get(i - 1).pow(2));
+            memo.add(result);
+        }
+        
+        return memo.get(n - 1);
+    }
 ```
 # Construct the Array
 ```java
+    static long countArray(int n, int k, int x) {
+        long a = 1, b = 0;
 
+        for (int i = 0; i < n - 1; i++) {
+            long ta = a, tb = b;
+            a = ((1L * (k - 1) * tb) % 1000000007);
+            b = (((1L * (k - 2) * tb) % 1000000007 + ta) % 1000000007);
+        }
 
+        return (x == 1) ? a : b;
+    }
 ```
 # Coin Change
 ```java
+    public static long getWays(int n, List<Long> c) {
+        List<Long> memo = new ArrayList<>(Collections.nCopies(n + 1, 0L));
+        memo.set(0, 1L);
 
+        for (long coin : c) {
+            int coinValue = (int) coin; // Convert the long coin to an int once
+            for (int amount = coinValue; amount <= n; amount++) {
+                memo.set(amount, memo.get(amount) + memo.get(amount - coinValue));
+            }
+        }
 
+        return memo.get(n);
+    }
 ```
 # Mars
 ```java
-
-
+public static int marsExploration(String s) {
+        String originalMessage = "SOS";
+        int diff = 0;
+        
+        for(int i = 0; i < s.length()/3; i++) {
+            String ss = s.substring(i*3,3*(1+i));
+            if(!ss.equals(originalMessage)) {
+                for(int j = 0; j < 3; j++) {
+                    if(originalMessage.charAt(j) != ss.charAt(j)) {
+                        diff++;
+                    }
+                }
+                    
+            }
+                
+        }
+        return diff;
+    }
 ```
 # Hacker Rank in a String
 ```java
