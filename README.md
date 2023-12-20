@@ -31,3 +31,96 @@
     }
 
 ```
+# Staircase
+```java
+    public static void staircase(int n) {
+        for (int i = 1; i <= n; i++) {
+            StringBuilder stairBuilder = new StringBuilder();
+            stairBuilder.append(" ".repeat(n - i));
+            stairBuilder.append("#".repeat(i));
+            System.out.println(stairBuilder.toString());
+        }
+    }   
+
+```
+
+# Mini-Max Sum
+```java
+
+
+```
+# Diagonal difference
+```java
+
+
+```
+# CamelCase
+```java
+
+
+```
+# Weighted Uniform Strings
+```java
+
+
+```
+# Alternating Characters
+```java
+
+
+```
+# Insertion Sort Part I
+```java
+
+
+```
+# Insertion Sort Part II
+```java
+
+
+```
+# Runnint Time of Algorithms
+```java
+
+
+```
+# Ice Cream Parlor
+```java
+
+
+```
+# Fibonacci Modified
+```java
+
+
+```
+# Construct the Array
+```java
+
+
+```
+# Coin Change
+```java
+
+
+```
+# Mars
+```java
+
+
+```
+# Hacker Rank in a String
+```java
+
+
+```
+# Correctness and the Loop Invariant
+```java
+
+
+```
+# Two strings
+```java
+
+
+```
