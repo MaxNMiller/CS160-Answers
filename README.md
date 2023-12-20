@@ -361,16 +361,59 @@ public static int marsExploration(String s) {
 ```
 # Hacker Rank in a String
 ```java
+    public static String hackerrankInString(String s) {
 
+    char[] chararray = s.toCharArray();
+    
+    int index = 0 ;
+    for(char c : chararray){
+        if(c == "hackerrank".charAt(index)){
+            index++;
+            if(index == 9){
+                return "YES";
+            }
+        }
+    }
+    return "NO";
 
+    }
 ```
 # Correctness and the Loop Invariant
 ```java
+    public static void insertionSort(int[] A){
+        for(int i = 0; i < A.length; i++){
+            int value = A[i];
+            int j = i - 1;
+            while(j >= 0 && A[j] > value){ 
+                A[j + 1] = A[j];
+                j = j - 1;
+            }
+            A[j + 1] = value;
+        }
+        printArray(A);
+    }
 
+    static void printArray(int[] ar) {
+        for(int n: ar){
+            System.out.print(n+" ");
+        }
+    }
 
 ```
 # Two strings
 ```java
-
+   public static String twoStrings(String s1, String s2) {
+    if (s1.isEmpty() || s2.isEmpty()) {
+        return "NO";
+    }
+    
+    char c = s1.charAt(0);
+    
+    if (s2.contains(String.valueOf(c))) {
+        return "YES";
+    }
+    
+    return twoStrings(s1.substring(1), s2);
+}
 
 ```
