@@ -142,15 +142,59 @@
 ```
 # Insertion Sort Part I
 ```java
+public static void insertionSort1(int n, List<Integer> arr) {
+    int current = arr.get(n - 1);
+    int i = n - 1;
 
+    while (i > 0 && current < arr.get(i - 1)) {
+        arr.set(i, arr.get(i - 1));
+        i--;
+        System.out.println(arr.stream().map(Object::toString).collect(Collectors.joining(" ")));
+    }
 
+    arr.set(i, current);
+    System.out.println(arr.stream().map(Object::toString).collect(Collectors.joining(" ")));
+}
 ```
 # Insertion Sort Part II
 ```java
-
-
+public static void insertionSort2(int n, List<Integer> arr) {
+        for (int i = 1; i < n; i++) {
+            int current = arr.get(i);
+            int j = i - 1;
+            while (j >= 0 && arr.get(j) > current) {
+                arr.set(j + 1, arr.get(j));
+                j--;
+            }
+            arr.set(j + 1, current);
+            for (int k = 0; k < n; k++) {
+                System.out.print(arr.get(k) + " ");
+            }
+            System.out.println();
+        }
+    }
 ```
 # Runnint Time of Algorithms
+```java
+    public static int runningTime(List<Integer> arr) {
+        int size = arr.size(); //size of array
+        int s = 0;  // number of shifts
+
+        for (int i = 1; i < size; i++) {
+            int position = i - 1;
+            int temp = arr.get(i);
+
+            while (position >= 0 && arr.get(position) > temp) {
+                arr.set(position + 1, arr.get(position));
+                s++;
+                position--;
+            }
+            arr.set(position + 1, temp);
+        }
+        return s;
+    }
+```
+# Quicksort I: Partition
 ```java
 
 
